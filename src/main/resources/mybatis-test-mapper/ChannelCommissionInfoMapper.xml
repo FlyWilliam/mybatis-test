@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fun.mybatis.dao.ChannelCommissionInfoMapper" >
+  <resultMap id="BaseResultMap" type="ChannelCommissionInfo" >
+    <id column="channel_id" property="channelId" jdbcType="BIGINT" />
+    <result column="default_fee_code" property="defaultFeeCode" jdbcType="INTEGER" />
+    <result column="plan_id" property="planId" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="updated_date" property="updatedDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    channel_id, default_fee_code, plan_id, created_by, created_date, updated_by, updated_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from channel_commission_info
+    where channel_id = #{channelId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from channel_commission_info
+    where channel_id = #{channelId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="ChannelCommissionInfo" >
+    insert into channel_commission_info (channel_id, default_fee_code, plan_id, 
+      created_by, created_date, updated_by, 
+      updated_date)
+    values (#{channelId,jdbcType=BIGINT}, #{defaultFeeCode,jdbcType=INTEGER}, #{planId,jdbcType=INTEGER}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="ChannelCommissionInfo" >
+    insert into channel_commission_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+      <if test="defaultFeeCode != null" >
+        default_fee_code,
+      </if>
+      <if test="planId != null" >
+        plan_id,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+      <if test="updatedDate != null" >
+        updated_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="channelId != null" >
+        #{channelId,jdbcType=BIGINT},
+      </if>
+      <if test="defaultFeeCode != null" >
+        #{defaultFeeCode,jdbcType=INTEGER},
+      </if>
+      <if test="planId != null" >
+        #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        #{updatedDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ChannelCommissionInfo" >
+    update channel_commission_info
+    <set >
+      <if test="defaultFeeCode != null" >
+        default_fee_code = #{defaultFeeCode,jdbcType=INTEGER},
+      </if>
+      <if test="planId != null" >
+        plan_id = #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        updated_date = #{updatedDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where channel_id = #{channelId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ChannelCommissionInfo" >
+    update channel_commission_info
+    set default_fee_code = #{defaultFeeCode,jdbcType=INTEGER},
+      plan_id = #{planId,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_date = #{updatedDate,jdbcType=TIMESTAMP}
+    where channel_id = #{channelId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="queryPage" parameterType="map" resultMap="BaseResultMap">
+  	 select <include refid="Base_Column_List" /> from channel_commission_info
+  	 <where>
+  	 	<if test="params.channelId != null">and channel_id=#{params.channelId, jdbcType=BIGINT}</if>
+  	 	<if test="params.createdBy != null and params.createdBy.length > 0">and created_by=#{params.createdBy, jdbcType=VARCHAR}</if>
+  	 </where>
+  	 <choose>
+  	 	<when test="params.orderBy != null">order by ${params.orderBy} ${params.order}, channel_id desc</when>
+  	 	<otherwise>order by channel_id desc</otherwise>
+  	 </choose>
+   </select>
+</mapper>
