@@ -1,4 +1,4 @@
-package com.fun.mybatis;
+package com.fun.mybatis.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,7 +37,7 @@ public class MybatisTestApplicationTests {
 		page.setOrder("desc");
 		page.setSort("created_date");
 		ChannelCommissionInfoQueryDto dto = new ChannelCommissionInfoQueryDto();
-		dto.setCreatedBy("qiang.li");
+		dto.setCreatedBy("**");
 		DataPage<ChannelCommissionInfo> dataPage = channelCommissionInfoService.queryPage(page, dto);
 		System.out.println(dataPage);
 	}
