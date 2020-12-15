@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.fun.mybatis.dto.MybatisTestAccDto;
-import com.fun.mybatis.model.ChannelCommissionInfo;
 import com.fun.mybatis.model.MybatisTestAcc;
 import com.fun.mybatis.service.MybatisTestAccService;
 import com.fun.mybatis.support.DataPage;
