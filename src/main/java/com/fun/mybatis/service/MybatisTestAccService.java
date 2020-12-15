@@ -5,9 +5,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fun.mybatis.dao.ChannelCommissionInfoMapper;
+import com.fun.mybatis.dao.MybatisTestAccMapper;
 import com.fun.mybatis.dto.ChannelCommissionInfoQueryDto;
+import com.fun.mybatis.dto.MybatisTestAccDto;
 import com.fun.mybatis.model.ChannelCommissionInfo;
+import com.fun.mybatis.model.MybatisTestAcc;
 import com.fun.mybatis.support.DataPage;
 import com.fun.mybatis.support.Page;
 import com.fun.mybatis.utils.BeanUtil;
@@ -15,28 +17,28 @@ import com.fun.mybatis.utils.PageUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-@Service("channelCommissionInfoService")
-public class ChannelCommissionInfoService {
+@Service("mybatisTestAccService")
+public class MybatisTestAccService {
 	
 	@Autowired
-	private ChannelCommissionInfoMapper channelCommissionInfoMapper;
+	private MybatisTestAccMapper mybatisTestAccMapper;
 	
-	public ChannelCommissionInfo queryById(Long channelId) {
-		return channelCommissionInfoMapper.selectByPrimaryKey(channelId);
-	}
-	
-	public DataPage<ChannelCommissionInfo> queryPage(Page<ChannelCommissionInfo> page,  ChannelCommissionInfoQueryDto dto) {
+	/**
+	 * 分页方法
+	 * @param page
+	 * @param dto
+	 * @return
+	 */
+	public DataPage<MybatisTestAcc> queryPage(Page<MybatisTestAcc> page,  MybatisTestAccDto dto) {
 		Map<String, Object> params = BeanUtil.beanToMapByField(dto);
 		params.put("orderBy", page.getSort());
 		params.put("order", page.getOrder());
 		
+		//强制使用页号和页面大小设置
 		page.setUsePageNo(true);
-		PageInfo<ChannelCommissionInfo> pageInfo = PageHelper.startPage(page.getPageNo(), page.getPageSize()).count(page.isNeedTotalCount()).doSelectPageInfo(()->channelCommissionInfoMapper.queryPage(params));
-		System.out.println(pageInfo);
+		PageInfo<MybatisTestAcc> pageInfo = PageHelper.startPage(page.getPageNo(), page.getPageSize()).count(page.isNeedTotalCount()).doSelectPageInfo(()->mybatisTestAccMapper.queryPage(params));
 		
 		return PageUtil.toDataPage(pageInfo);
 		
 	}
-	
-	
 }

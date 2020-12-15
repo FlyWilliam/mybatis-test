@@ -5,7 +5,7 @@ import java.util.List;
 
 public class DataPage<T> implements Serializable {
 	
-	 //当前页
+	//当前页
 	private int pageNo;
     //每页的数量
     private int pageSize;

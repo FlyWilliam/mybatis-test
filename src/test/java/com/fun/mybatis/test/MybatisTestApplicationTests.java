@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.util.Assert;
 
-import com.fun.mybatis.dto.ChannelCommissionInfoQueryDto;
+import com.fun.mybatis.dto.MybatisTestAccDto;
 import com.fun.mybatis.model.ChannelCommissionInfo;
-import com.fun.mybatis.service.ChannelCommissionInfoService;
+import com.fun.mybatis.model.MybatisTestAcc;
+import com.fun.mybatis.service.MybatisTestAccService;
 import com.fun.mybatis.support.DataPage;
 import com.fun.mybatis.support.Page;
 
@@ -20,25 +20,18 @@ import com.fun.mybatis.support.Page;
 public class MybatisTestApplicationTests {
 
 	@Autowired
-	private ChannelCommissionInfoService channelCommissionInfoService;
-	
-	
-	@Test
-	public void testQueryById() {
-		ChannelCommissionInfo channelInfo = channelCommissionInfoService.queryById(8000L);
-		Assert.isNull(channelInfo, "不存在該對象");
-	}
+	private MybatisTestAccService mybatisTestAccService;
 	
 	
 	@Test
 	public void testQueryPage() {
-		Page<ChannelCommissionInfo>  page = new Page<>(1, 100);
-		page.setNeedTotalCount(false);
+		Page<MybatisTestAcc>  page = new Page<>(1, 100);
+		page.setNeedTotalCount(true); //是否count查询
 		page.setOrder("desc");
 		page.setSort("created_date");
-		ChannelCommissionInfoQueryDto dto = new ChannelCommissionInfoQueryDto();
-		dto.setCreatedBy("**");
-		DataPage<ChannelCommissionInfo> dataPage = channelCommissionInfoService.queryPage(page, dto);
+		MybatisTestAccDto dto = new MybatisTestAccDto();
+		//dto.setAccount("funName1");
+		DataPage<MybatisTestAcc> dataPage = mybatisTestAccService.queryPage(page, dto);
 		System.out.println(dataPage);
 	}
 	
