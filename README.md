@@ -3,6 +3,7 @@ a test about mybatis & springboot ,use pageHelper plugin implements page functio
 
 
 ## create table and init 
+```
 DROP TABLE IF EXISTS `mybatis_test_acc`;
 CREATE TABLE `mybatis_test_acc` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -14,7 +15,7 @@ CREATE TABLE `mybatis_test_acc` (
   `updated_by` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
-
+```
 -------------------------------------------------------------
 
 DELIMITER //
