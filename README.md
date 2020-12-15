@@ -16,7 +16,7 @@ CREATE TABLE `mybatis_test_acc` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 ```
-##init data
+#init data
 ```
 DELIMITER //
 DROP PROCEDURE IF EXISTS INIT_MYBATIS_TEST_ACC;
