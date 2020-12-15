@@ -15,7 +15,7 @@ CREATE TABLE `mybatis_test_acc` (
   `updated_by` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
-```
+
 -------------------------------------------------------------
 
 DELIMITER //
@@ -31,5 +31,5 @@ CREATE PROCEDURE INIT_MYBATIS_TEST_ACC()
 DELIMITER;
 
 call INIT_MYBATIS_TEST_ACC(); --invoke
-
+```
 
