@@ -3,7 +3,6 @@ a test about mybatis & springboot ,use pageHelper plugin implements page functio
 
 
 ## create table and init 
-<H1>
 DROP TABLE IF EXISTS `mybatis_test_acc`;
 CREATE TABLE `mybatis_test_acc` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -16,6 +15,7 @@ CREATE TABLE `mybatis_test_acc` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
+-------------------------------------------------------------
 
 DELIMITER //
 DROP PROCEDURE IF EXISTS INIT_MYBATIS_TEST_ACC;
@@ -30,6 +30,5 @@ CREATE PROCEDURE INIT_MYBATIS_TEST_ACC()
 DELIMITER;
 
 call INIT_MYBATIS_TEST_ACC(); --invoke
-</H1>
 
 
